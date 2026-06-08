@@ -8,19 +8,26 @@ import { useState } from "react";
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = () => {
-    if (!global.user || email !== global.user.email) {
-      Alert.alert("Erro", "Conta não encontrada");
-      return;
-    }
+    setLoading(true);
+    
+    setTimeout(() => {
+      setLoading(false);
 
-    if (senha !== global.user.senha) {
-      Alert.alert("Erro", "Senha incorreta");
-      return;
-    }
+      if (!global.user || email !== global.user.email) {
+        Alert.alert("Erro", "Conta não encontrada");
+        return;
+      }
 
-    navigation.navigate("Dashboard");
+      if (senha !== global.user.senha) {
+        Alert.alert("Erro", "Senha incorreta");
+        return;
+      }
+
+      navigation.navigate("Dashboard");
+    }, 1200);
   };
 
   return (
@@ -28,12 +35,22 @@ export default function LoginScreen({ navigation }) {
       <Title>🌱 Eco Monitor</Title>
 
       <View style={styles.form}>
-        <Input placeholder="Email" onChangeText={setEmail} />
-        <Input placeholder="Senha" secureTextEntry onChangeText={setSenha} />
+        <Input 
+          placeholder="Digite seu email" 
+          onChangeText={setEmail} 
+        />
+        <Input 
+          placeholder="Digite sua senha" 
+          secureTextEntry 
+          onChangeText={setSenha} 
+        />
       </View>
 
       <View style={styles.buttons}>
-        <Button title="Entrar" onPress={handleLogin} />
+        <Button 
+          title={loading ? "Entrando..." : "Entrar"} 
+          onPress={handleLogin} 
+        />
 
         <Button
           title="Criar conta"
