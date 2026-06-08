@@ -16,7 +16,7 @@ export default function DashboardScreen({ navigation }) {
       </View>
 
       <Button
-        title="Ver Sensores 📡"
+        title="Ver sensores ambientais 📡"
         onPress={() => navigation.navigate("Sensores")}
       />
     </ScreenContainer>

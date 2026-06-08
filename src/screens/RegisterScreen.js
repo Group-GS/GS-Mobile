@@ -11,13 +11,20 @@ export default function RegisterScreen({ navigation }) {
 
   const handleRegister = () => {
     if (!email || !senha) {
-      Alert.alert("Erro", "Preencha todos os campos");
+      Alert.alert(
+        "Campos obrigatórios",
+        "Preencha seu e-mail e senha para continuar."
+      );
       return;
     }
 
     global.user = { email, senha };
 
-    Alert.alert("Sucesso", "Conta criada!");
+    Alert.alert(
+      "Conta criada com sucesso 🎉",
+      "Agora você já pode fazer login no sistema."
+    );
+
     navigation.goBack();
   };
 
@@ -26,8 +33,17 @@ export default function RegisterScreen({ navigation }) {
       <Title>📝 Criar Conta</Title>
 
       <View style={styles.form}>
-        <Input placeholder="Email" onChangeText={setEmail} />
-        <Input placeholder="Senha" secureTextEntry onChangeText={setSenha} />
+        <Input
+          placeholder="Seu melhor e-mail"
+          autoCapitalize="none"
+          onChangeText={setEmail}
+        />
+
+        <Input
+          placeholder="Crie uma senha segura"
+          secureTextEntry
+          onChangeText={setSenha}
+        />
       </View>
 
       <View style={styles.buttons}>

@@ -12,17 +12,23 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = () => {
     setLoading(true);
-    
+
     setTimeout(() => {
       setLoading(false);
 
       if (!global.user || email !== global.user.email) {
-        Alert.alert("Erro", "Conta não encontrada");
+        Alert.alert(
+          "E-mail não encontrado",
+          "Verifique se o e-mail está correto ou crie uma nova conta."
+        );
         return;
       }
 
       if (senha !== global.user.senha) {
-        Alert.alert("Erro", "Senha incorreta");
+        Alert.alert(
+          "Senha incorreta",
+          "A senha informada não está correta. Tente novamente."
+        );
         return;
       }
 
@@ -35,21 +41,23 @@ export default function LoginScreen({ navigation }) {
       <Title>🌱 Eco Monitor</Title>
 
       <View style={styles.form}>
-        <Input 
-          placeholder="Digite seu email" 
-          onChangeText={setEmail} 
+        <Input
+          placeholder="Digite seu e-mail cadastrado"
+          autoCapitalize="none"
+          onChangeText={setEmail}
         />
-        <Input 
-          placeholder="Digite sua senha" 
-          secureTextEntry 
-          onChangeText={setSenha} 
+
+        <Input
+          placeholder="Sua senha de acesso"
+          secureTextEntry
+          onChangeText={setSenha}
         />
       </View>
 
       <View style={styles.buttons}>
-        <Button 
-          title={loading ? "Entrando..." : "Entrar"} 
-          onPress={handleLogin} 
+        <Button
+          title={loading ? "Entrando..." : "Entrar"}
+          onPress={handleLogin}
         />
 
         <Button

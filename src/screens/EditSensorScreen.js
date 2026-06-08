@@ -8,7 +8,11 @@ export default function EditSensorScreen({ route, navigation }) {
   const { sensor } = route.params;
 
   const handleUpdate = () => {
-    Alert.alert("Atualizado!");
+    Alert.alert(
+      "Atualização concluída",
+      "Os dados do sensor foram atualizados com sucesso."
+    );
+
     navigation.goBack();
   };
 
@@ -17,8 +21,8 @@ export default function EditSensorScreen({ route, navigation }) {
       <Title>✏️ Editar Sensor</Title>
 
       <View style={styles.form}>
-        <Input defaultValue={sensor.nome} />
-        <Input defaultValue={sensor.valor} />
+        <Input placeholder="Nome do sensor" defaultValue={sensor.nome} />
+        <Input placeholder="Valor atualizado" defaultValue={sensor.valor} />
       </View>
 
       <Button title="Atualizar" onPress={handleUpdate} />
