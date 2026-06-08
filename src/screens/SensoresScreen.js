@@ -19,19 +19,21 @@ export default function SensoresScreen({ navigation }) {
         keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
-          <Card 
+          <Card
             title={item.nome}
             value={item.valor}
-            icon="sensors"
-            onPress={() => navigation.navigate("EditSensor", { sensor: item })}
+            icon="thermostat"
+            onPress={() =>
+              navigation.navigate("EditSensor", { sensor: item })
+            }
           />
         )}
       />
 
       <View style={styles.buttonContainer}>
-        <Button 
-          title="Adicionar Sensor" 
-          onPress={() => navigation.navigate("CreateSensor")} 
+        <Button
+          title="Adicionar Sensor"
+          onPress={() => navigation.navigate("CreateSensor")}
         />
       </View>
     </ScreenContainer>

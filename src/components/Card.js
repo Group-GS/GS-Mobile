@@ -14,3 +14,29 @@ export default function Card({ title, value, icon, onPress }) {
     </TouchableOpacity>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    backgroundColor: theme.colors.card,
+    padding: 20,
+    borderRadius: 12,
+    marginBottom: 15,
+    elevation: 4
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10
+  },
+  title: {
+    fontFamily: theme.fonts.regular,
+    fontSize: 14,
+    color: theme.colors.text
+  },
+  value: {
+    fontFamily: theme.fonts.bold,
+    fontSize: 26,
+    color: theme.colors.primary,
+    marginTop: 10
+  }
+});

@@ -5,27 +5,25 @@ import Button from "../components/Button";
 import { View, StyleSheet, Alert } from "react-native";
 import { useState } from "react";
 
-export default function LoginScreen({ navigation }) {
+export default function RegisterScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const handleLogin = () => {
-    if (!global.user || email !== global.user.email) {
-      Alert.alert("Erro", "Conta não encontrada");
+  const handleRegister = () => {
+    if (!email || !senha) {
+      Alert.alert("Erro", "Preencha todos os campos");
       return;
     }
 
-    if (senha !== global.user.senha) {
-      Alert.alert("Erro", "Senha incorreta");
-      return;
-    }
+    global.user = { email, senha };
 
-    navigation.navigate("Dashboard");
+    Alert.alert("Sucesso", "Conta criada!");
+    navigation.goBack();
   };
 
   return (
     <ScreenContainer>
-      <Title>🌱 Eco Monitor</Title>
+      <Title>📝 Criar Conta</Title>
 
       <View style={styles.form}>
         <Input placeholder="Email" onChangeText={setEmail} />
@@ -33,11 +31,11 @@ export default function LoginScreen({ navigation }) {
       </View>
 
       <View style={styles.buttons}>
-        <Button title="Entrar" onPress={handleLogin} />
+        <Button title="Cadastrar" onPress={handleRegister} />
 
         <Button
-          title="Criar conta"
-          onPress={() => navigation.navigate("Register")}
+          title="Já tenho conta"
+          onPress={() => navigation.goBack()}
         />
       </View>
     </ScreenContainer>

@@ -15,9 +15,9 @@ export default function DashboardScreen({ navigation }) {
         <Card title="Status" value="Normal" icon="check-circle" />
       </View>
 
-      <Button 
-        title="Ver Sensores 📡" 
-        onPress={() => navigation.navigate("Sensores")} 
+      <Button
+        title="Ver Sensores 📡"
+        onPress={() => navigation.navigate("Sensores")}
       />
     </ScreenContainer>
   );
