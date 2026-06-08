@@ -4,9 +4,16 @@ import { theme } from "../styles/theme";
 
 export default function Card({ title, value, icon, onPress }) {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.card}>
-      <View style={styles.row}>
-        <MaterialIcons name={icon} size={28} color={theme.colors.primary} />
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={onPress}
+      style={styles.card}
+    >
+      <View style={styles.header}>
+        <View style={styles.iconBox}>
+          <MaterialIcons name={icon} size={26} color={theme.colors.primary} />
+        </View>
+
         <Text style={styles.title}>{title}</Text>
       </View>
 
@@ -18,24 +25,36 @@ export default function Card({ title, value, icon, onPress }) {
 const styles = StyleSheet.create({
   card: {
     backgroundColor: theme.colors.card,
-    padding: 20,
-    borderRadius: 12,
-    marginBottom: 15,
-    elevation: 4
+    padding: 18,
+    borderRadius: 14,
+    marginBottom: 12,
+    elevation: 3
   },
-  row: {
+
+  header: {
     flexDirection: "row",
-    alignItems: "center",
-    gap: 10
+    alignItems: "center"
   },
+
+  iconBox: {
+    width: 38,
+    height: 38,
+    borderRadius: 10,
+    backgroundColor: "#E8F5E9",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 10
+  },
+
   title: {
     fontFamily: theme.fonts.regular,
     fontSize: 14,
     color: theme.colors.text
   },
+
   value: {
     fontFamily: theme.fonts.bold,
-    fontSize: 26,
+    fontSize: 24,
     color: theme.colors.primary,
     marginTop: 10
   }
