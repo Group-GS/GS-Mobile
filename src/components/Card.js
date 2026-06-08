@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   value: {
     fontFamily: theme.fonts.bold,
-    fontSize: 22,
+    fontSize: 26,
     color: theme.colors.primary,
     marginTop: 10
   }

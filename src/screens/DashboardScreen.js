@@ -1,18 +1,25 @@
+import { View, StyleSheet } from "react-native";
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import Card from "../components/Card";
-import { View, Text, StyleSheet } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { theme } from "../styles/theme";
 
 export default function DashboardScreen() {
   return (
     <ScreenContainer>
-        <MaterialIcons name="thermostat" size={24} color="green" />
-        <Title>Dashboard 🌍</Title>
+      <Title>🌍 Dashboard Ambiental</Title>
 
+      <View style={styles.cards}>
         <Card title="Temperatura" value="25°C" icon="thermostat" />
         <Card title="Umidade" value="60%" icon="water-drop" />
         <Card title="Status" value="Normal" icon="check-circle" />
+      </View>
     </ScreenContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  cards: {
+    marginTop: 10
+  }
+});

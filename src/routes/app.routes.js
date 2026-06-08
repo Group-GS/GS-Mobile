@@ -1,6 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, Text, StyleSheet } from "react-native";
+import DashboardScreen from "../screens/DashboardScreen";
+import SensoresScreen from "../screens/SensoresScreen";
+
 
 import LoginScreen from '../screens/LoginScreen';
 
@@ -11,6 +14,8 @@ export default function Routes() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Dashboard" component={DashboardScreen} />
+        <Stack.Screen name="Sensores" component={SensoresScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
