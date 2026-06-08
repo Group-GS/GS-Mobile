@@ -2,7 +2,7 @@ import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { Alert } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 
 export default function CreateSensorScreen({ navigation }) {
 
@@ -15,10 +15,18 @@ export default function CreateSensorScreen({ navigation }) {
     <ScreenContainer>
       <Title>➕ Novo Sensor</Title>
 
-      <Input placeholder="Nome do sensor" />
-      <Input placeholder="Valor (ex: 25°C)" />
+      <View style={styles.form}>
+        <Input placeholder="Nome do sensor" />
+        <Input placeholder="Valor (ex: 25°C)" />
+      </View>
 
       <Button title="Salvar" onPress={handleCreate} />
     </ScreenContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  form: {
+    marginBottom: 20
+  }
+});

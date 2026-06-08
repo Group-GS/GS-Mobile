@@ -1,10 +1,10 @@
-import { View, StyleSheet } from "react-native";
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import Card from "../components/Card";
-import { theme } from "../styles/theme";
+import Button from "../components/Button";
+import { View, StyleSheet } from "react-native";
 
-export default function DashboardScreen() {
+export default function DashboardScreen({ navigation }) {
   return (
     <ScreenContainer>
       <Title>🌍 Dashboard Ambiental</Title>
@@ -14,12 +14,18 @@ export default function DashboardScreen() {
         <Card title="Umidade" value="60%" icon="water-drop" />
         <Card title="Status" value="Normal" icon="check-circle" />
       </View>
+
+      <Button 
+        title="Ver Sensores 📡" 
+        onPress={() => navigation.navigate("Sensores")} 
+      />
     </ScreenContainer>
   );
 }
 
 const styles = StyleSheet.create({
   cards: {
-    marginTop: 10
+    marginTop: 10,
+    marginBottom: 20
   }
 });

@@ -2,12 +2,13 @@ import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import { Alert } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 
-export default function EditSensorScreen({ navigation }) {
+export default function EditSensorScreen({ route, navigation }) {
+  const { sensor } = route.params;
 
   const handleUpdate = () => {
-    Alert.alert("Sucesso", "Sensor atualizado!");
+    Alert.alert("Atualizado!");
     navigation.goBack();
   };
 
@@ -15,10 +16,18 @@ export default function EditSensorScreen({ navigation }) {
     <ScreenContainer>
       <Title>✏️ Editar Sensor</Title>
 
-      <Input placeholder="Nome do sensor" />
-      <Input placeholder="Valor (ex: 25°C)" />
+      <View style={styles.form}>
+        <Input defaultValue={sensor.nome} />
+        <Input defaultValue={sensor.valor} />
+      </View>
 
       <Button title="Atualizar" onPress={handleUpdate} />
     </ScreenContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  form: {
+    marginBottom: 20
+  }
+});

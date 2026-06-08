@@ -1,42 +1,16 @@
-import { View, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { theme } from "../styles/theme";
 
-export default function Card({ title, value, icon }) {
+export default function Card({ title, value, icon, onPress }) {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity onPress={onPress} style={styles.card}>
       <View style={styles.row}>
         <MaterialIcons name={icon} size={28} color={theme.colors.primary} />
         <Text style={styles.title}>{title}</Text>
       </View>
 
       <Text style={styles.value}>{value}</Text>
-    </View>
+    </TouchableOpacity>
   );
 }
-
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: theme.colors.card,
-    padding: 20,
-    borderRadius: 12,
-    marginBottom: 15,
-    elevation: 4
-  },
-  row: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 10
-  },
-  title: {
-    fontFamily: theme.fonts.regular,
-    fontSize: 14,
-    color: theme.colors.text
-  },
-  value: {
-    fontFamily: theme.fonts.bold,
-    fontSize: 26,
-    color: theme.colors.primary,
-    marginTop: 10
-  }
-});

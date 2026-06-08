@@ -20,9 +20,10 @@ export default function SensoresScreen({ navigation }) {
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
           <Card 
-            title={item.nome} 
-            value={item.valor} 
+            title={item.nome}
+            value={item.valor}
             icon="sensors"
+            onPress={() => navigation.navigate("EditSensor", { sensor: item })}
           />
         )}
       />
