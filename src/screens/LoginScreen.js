@@ -26,12 +26,12 @@ export default function LoginScreen({ navigation }) {
 
       if (senha !== global.user.senha) {
         Alert.alert(
-          "Senha incorreta",
-          "A senha informada não está correta. Tente novamente."
+        "Senha incorreta",
+        "A senha informada não está correta. Tente novamente."
         );
         return;
       }
-
+      global.loggedUser = email;
       navigation.navigate("Dashboard");
     }, 1200);
   };
