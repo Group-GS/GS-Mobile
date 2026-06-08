@@ -7,6 +7,7 @@ import {
 } from "react-native";
 
 import { MaterialIcons } from "@expo/vector-icons";
+import { Picker } from "@react-native-picker/picker";
 
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
@@ -21,21 +22,37 @@ export default function EditSensorScreen({
   const { sensor } = route.params;
 
   const [tipoSensor, setTipoSensor] = useState(
-    sensor.tipoSensor
+    sensor.tipoSensor || ""
   );
 
   const [status, setStatus] = useState(
-    sensor.status
+    sensor.status || "ATIVO"
+  );
+
+  const [localId, setLocalId] = useState(
+    sensor.local?.id || 1
   );
 
   const handleUpdate = async () => {
     try {
+      console.log({
+        id: sensor.id,
+        tipoSensor,
+        status,
+        local: {
+          id: localId,
+        },
+      });
+
       await api.put(
         `/sensor/atualizar/${sensor.id}`,
         {
           id: sensor.id,
           tipoSensor,
           status,
+          local: {
+            id: localId,
+          },
         }
       );
 
@@ -46,6 +63,16 @@ export default function EditSensorScreen({
 
       navigation.goBack();
     } catch (error) {
+      console.log(
+        "STATUS:",
+        error.response?.status
+      );
+
+      console.log(
+        "DATA:",
+        error.response?.data
+      );
+
       Alert.alert(
         "Erro",
         "Não foi possível atualizar o sensor."
@@ -66,6 +93,16 @@ export default function EditSensorScreen({
 
       navigation.goBack();
     } catch (error) {
+      console.log(
+        "STATUS:",
+        error.response?.status
+      );
+
+      console.log(
+        "DATA:",
+        error.response?.data
+      );
+
       Alert.alert(
         "Erro",
         "Não foi possível remover o sensor."
@@ -98,7 +135,6 @@ export default function EditSensorScreen({
 
         <TouchableOpacity
           onPress={confirmarExclusao}
-          style={styles.trashButton}
         >
           <MaterialIcons
             name="delete-outline"
@@ -110,16 +146,58 @@ export default function EditSensorScreen({
 
       <View style={styles.form}>
         <Input
+          placeholder="Tipo do Sensor"
           value={tipoSensor}
           onChangeText={setTipoSensor}
-          placeholder="Tipo do Sensor"
         />
 
-        <Input
-          value={status}
-          onChangeText={setStatus}
-          placeholder="Status"
-        />
+        <Picker
+          selectedValue={status}
+          onValueChange={(itemValue) =>
+            setStatus(itemValue)
+          }
+        >
+          <Picker.Item label="ATIVO" value="ATIVO" />
+          <Picker.Item label="INATIVO" value="INATIVO" />
+          <Picker.Item label="MANUTENÇÃO" value="MANUTENCAO" />
+        </Picker>
+
+        <Picker
+          selectedValue={localId}
+          onValueChange={(itemValue) =>
+            setLocalId(itemValue)
+          }
+        >
+          <Picker.Item
+            label="Fazenda Verde - Manaus"
+            value={1}
+          />
+
+          <Picker.Item
+            label="Fazenda Sol Nascente - Goiânia"
+            value={2}
+          />
+
+          <Picker.Item
+            label="Sítio Sertão Forte - Juazeiro"
+            value={3}
+          />
+
+          <Picker.Item
+            label="Fazenda Atlântica - Campinas"
+            value={4}
+          />
+
+          <Picker.Item
+            label="Estância Sul - Pelotas"
+            value={5}
+          />
+
+          <Picker.Item
+            label="Fazenda Pantaneira - Corumbá"
+            value={6}
+          />
+        </Picker>
       </View>
 
       <Button
@@ -135,10 +213,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-  },
-
-  trashButton: {
-    padding: 4,
   },
 
   form: {

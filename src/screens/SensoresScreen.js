@@ -12,13 +12,22 @@ export default function SensoresScreen({ navigation }) {
   const [sensores, setSensores] = useState([]);
 
   const carregarSensores = async () => {
-    try {
-      const response = await api.get("/sensor/todos");
-      setSensores(response.data);
-    } catch (error) {
-      Alert.alert("Erro", "Não foi possível carregar os sensores.");
-    }
-  };
+  try {
+    const response = await api.get("/sensor/todos");
+
+    const sensoresOrdenados = response.data.sort(
+      (a, b) => a.id - b.id
+    );
+
+    setSensores(sensoresOrdenados);
+
+  } catch (error) {
+    Alert.alert(
+      "Erro",
+      "Não foi possível carregar os sensores."
+    );
+  }
+};
 
   useFocusEffect(
     useCallback(() => {
@@ -36,8 +45,10 @@ export default function SensoresScreen({ navigation }) {
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
           <Card
-            title={item.tipoSensor}
-            value={item.status}
+            title={`Sensor #${item.id}`}
+            value={
+              `${item.tipoSensor} • ${item.status}\n📍 ${item.local?.nome} - ${item.local?.cidade}`
+            }
             icon="thermostat"
             onPress={() =>
               navigation.navigate("EditSensor", {
@@ -51,7 +62,9 @@ export default function SensoresScreen({ navigation }) {
       <View style={styles.buttonContainer}>
         <Button
           title="Adicionar Sensor 📡"
-          onPress={() => navigation.navigate("CreateSensor")}
+          onPress={() =>
+            navigation.navigate("CreateSensor")
+          }
         />
       </View>
     </ScreenContainer>
@@ -62,6 +75,7 @@ const styles = StyleSheet.create({
   list: {
     paddingBottom: 20,
   },
+
   buttonContainer: {
     marginTop: 10,
   },
