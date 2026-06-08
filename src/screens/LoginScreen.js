@@ -15,36 +15,3 @@ export default function LoginScreen() {
     </ScreenContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: theme.colors.background,
-    justifyContent: "center",
-    padding: 20
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    color: theme.colors.primary,
-    marginBottom: 30,
-    textAlign: "center"
-  },
-  input: {
-    backgroundColor: "#fff",
-    padding: 12,
-    borderRadius: 8,
-    marginBottom: 10
-  },
-  button: {
-    backgroundColor: theme.colors.primary,
-    padding: 15,
-    borderRadius: 8,
-    marginTop: 10
-  },
-  buttonText: {
-    color: "#fff",
-    textAlign: "center",
-    fontWeight: "bold"
-  }
-});

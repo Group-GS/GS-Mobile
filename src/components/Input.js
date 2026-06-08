@@ -1,4 +1,4 @@
-import { TextInput, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TextInput  } from "react-native";
 
 export default function Input(props) {
   return <TextInput style={styles.input} {...props} />;

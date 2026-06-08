@@ -7,9 +7,15 @@ export const theme = {
     text: "#263238",
     danger: "#D32F2F"
   },
+
   fonts: {
-  title: 24,
-  subtitle: 18,
-  text: 14
-}
+    regular: "Poppins_400Regular",
+    bold: "Poppins_700Bold"
+  },
+
+  sizes: {
+    title: 24,
+    subtitle: 18,
+    text: 14
+  }
 };

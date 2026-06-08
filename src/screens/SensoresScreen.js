@@ -1,6 +1,6 @@
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
-import { FlatList } from "react-native";
+import { FlatList, StyleSheet  } from "react-native";
 import Card from "../components/Card";
 
 export default function SensoresScreen() {

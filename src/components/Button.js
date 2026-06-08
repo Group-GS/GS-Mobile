@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     borderRadius: 8
   },
   text: {
+    fontFamily: theme.fonts.bold,
     color: "#fff",
     textAlign: "center",
     fontWeight: "bold"

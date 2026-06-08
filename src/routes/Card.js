@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.card,
     padding: 20,
     borderRadius: 12,
-    marginBottom: 10,
+    marginBottom: 15,
     elevation: 3
   },
   title: {
