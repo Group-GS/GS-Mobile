@@ -1,10 +1,15 @@
 import { View, Text, StyleSheet } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 import { theme } from "../styles/theme";
 
-export default function Card({ title, value }) {
+export default function Card({ title, value, icon }) {
   return (
     <View style={styles.card}>
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.row}>
+        <MaterialIcons name={icon} size={28} color={theme.colors.primary} />
+        <Text style={styles.title}>{title}</Text>
+      </View>
+
       <Text style={styles.value}>{value}</Text>
     </View>
   );
@@ -16,15 +21,22 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 12,
     marginBottom: 15,
-    elevation: 3
+    elevation: 4
+  },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10
   },
   title: {
-    color: theme.colors.text,
-    fontSize: 14
+    fontFamily: theme.fonts.regular,
+    fontSize: 14,
+    color: theme.colors.text
   },
   value: {
+    fontFamily: theme.fonts.bold,
     fontSize: 22,
-    fontWeight: "bold",
-    color: theme.colors.primary
+    color: theme.colors.primary,
+    marginTop: 10
   }
 });

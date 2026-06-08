@@ -7,12 +7,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 export default function DashboardScreen() {
   return (
     <ScreenContainer>
-      <MaterialIcons name="thermostat" size={24} color="green" />
-      <Title>Dashboard 🌍</Title>
+        <MaterialIcons name="thermostat" size={24} color="green" />
+        <Title>Dashboard 🌍</Title>
 
-      <Card title="Temperatura" value="25°C" />
-      <Card title="Umidade" value="60%" />
-      <Card title="Status" value="Normal" />
+        <Card title="Temperatura" value="25°C" icon="thermostat" />
+        <Card title="Umidade" value="60%" icon="water-drop" />
+        <Card title="Status" value="Normal" icon="check-circle" />
     </ScreenContainer>
   );
 }
