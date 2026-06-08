@@ -1,14 +1,30 @@
+import { useCallback, useState } from "react";
+import { FlatList, StyleSheet, View, Alert } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+
 import ScreenContainer from "../components/ScreenContainer";
 import Title from "../components/Title";
-import { FlatList, StyleSheet, View } from "react-native";
 import Card from "../components/Card";
 import Button from "../components/Button";
+import { api } from "../services/api";
 
 export default function SensoresScreen({ navigation }) {
-  const sensores = [
-    { id: 1, nome: "Sensor 1", valor: "25°C" },
-    { id: 2, nome: "Sensor 2", valor: "60%" }
-  ];
+  const [sensores, setSensores] = useState([]);
+
+  const carregarSensores = async () => {
+    try {
+      const response = await api.get("/sensor/todos");
+      setSensores(response.data);
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível carregar os sensores.");
+    }
+  };
+
+  useFocusEffect(
+    useCallback(() => {
+      carregarSensores();
+    }, [])
+  );
 
   return (
     <ScreenContainer>
@@ -20,11 +36,13 @@ export default function SensoresScreen({ navigation }) {
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
           <Card
-            title={item.nome}
-            value={item.valor}
+            title={item.tipoSensor}
+            value={item.status}
             icon="thermostat"
             onPress={() =>
-              navigation.navigate("EditSensor", { sensor: item })
+              navigation.navigate("EditSensor", {
+                sensor: item,
+              })
             }
           />
         )}
@@ -32,7 +50,7 @@ export default function SensoresScreen({ navigation }) {
 
       <View style={styles.buttonContainer}>
         <Button
-          title="Adicionar Sensor"
+          title="Adicionar Sensor 📡"
           onPress={() => navigation.navigate("CreateSensor")}
         />
       </View>
@@ -42,9 +60,9 @@ export default function SensoresScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   list: {
-    paddingBottom: 20
+    paddingBottom: 20,
   },
   buttonContainer: {
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 });
