@@ -38,7 +38,7 @@ Aluno: Henrique Teixeira Cesar / RM: 563088
 
 **Link do vídeo:**
 
-COLE AQUI O LINK DO YOUTUBE
+https://www.youtube.com/shorts/6AjHFYb7YS4
 
 ---
 
@@ -176,14 +176,6 @@ baseURL: "http://localhost:8083"
 ```
 
 Portanto, a API Java deve estar em execução localmente na porta 8083 antes de iniciar o aplicativo.
-
----
-
-## 🎥 Vídeo de Demonstração
-
-Link do vídeo:
-
-**[COLE AQUI O LINK DO YOUTUBE]**
 
 ---
 
